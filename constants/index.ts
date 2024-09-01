@@ -1,8 +1,6 @@
-import arrowDown from "@/assets/icons/arrow-down.png";
 import arrowUp from "@/assets/icons/arrow-up.png";
 import backArrow from "@/assets/icons/back-arrow.png";
 import chat from "@/assets/icons/chat.png";
-import checkmark from "@/assets/icons/check.png";
 import close from "@/assets/icons/close.png";
 import dollar from "@/assets/icons/dollar.png";
 import email from "@/assets/icons/email.png";
@@ -47,11 +45,9 @@ export const images = {
 };
 
 export const icons = {
-  arrowDown,
   arrowUp,
   backArrow,
   chat,
-  checkmark,
   close,
   dollar,
   email,
@@ -73,23 +69,6 @@ export const icons = {
   target,
   to,
 };
-
-export const profiles = [
-  {
-    id: "1",
-    name: "John Doe",
-    age: 25,
-    bio: "Love hiking and outdoor adventures.",
-    photo: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    age: 28,
-    bio: "Coffee addict. Book lover.",
-    photo: "https://randomuser.me/api/portraits/women/1.jpg",
-  },
-];
 
 export const chatData = [
   {
@@ -351,7 +330,7 @@ export const matchesData = [
     age: 24,
     city: "Seattle",
     country: "USA",
-    bio: "A nature lover who enjoys morning hikes and weekend camping trips. Passionate about wildlife photography and preserving the environment.",
+    bio: "Nature lover, hiker, and wildlife photographer.",
   },
   {
     id: 2,
@@ -361,7 +340,7 @@ export const matchesData = [
     age: 27,
     city: "San Francisco",
     country: "USA",
-    bio: "A tech enthusiast who loves coding, building apps, and exploring new technologies. Enjoys cycling along the coast and trying out new coffee shops.",
+    bio: "Tech enthusiast, cyclist, and coffee lover.",
   },
   {
     id: 3,
@@ -371,7 +350,7 @@ export const matchesData = [
     age: 26,
     city: "Dublin",
     country: "Ireland",
-    bio: "A bookworm and aspiring author who spends weekends in cozy cafes with a good novel. Loves writing short stories and blogging about literature.",
+    bio: "Bookworm, aspiring author, and blogger.",
   },
   {
     id: 4,
@@ -381,7 +360,7 @@ export const matchesData = [
     age: 29,
     city: "Melbourne",
     country: "Australia",
-    bio: "An adventure junkie with a passion for extreme sports. Always up for surfing, skydiving, or mountain biking. Loves traveling to new destinations.",
+    bio: "Adventure junkie, surfer, and traveler.",
   },
   {
     id: 5,
@@ -391,7 +370,7 @@ export const matchesData = [
     age: 30,
     city: "Florence",
     country: "Italy",
-    bio: "An art historian who loves exploring museums and art galleries. Enjoys painting in her free time and cooking traditional Italian dishes.",
+    bio: "Art historian, painter, and cook.",
   },
   {
     id: 6,
@@ -401,7 +380,7 @@ export const matchesData = [
     age: 28,
     city: "Zurich",
     country: "Switzerland",
-    bio: "A financial analyst by day and an avid skier by winter. Enjoys spending weekends in the Alps and discovering new hiking trails during summer.",
+    bio: "Analyst, skier, and hiker.",
   },
   {
     id: 7,
@@ -411,7 +390,7 @@ export const matchesData = [
     age: 31,
     city: "Barcelona",
     country: "Spain",
-    bio: "A foodie who loves exploring street food markets and trying out new recipes. Passionate about photography and capturing the essence of city life.",
+    bio: "Foodie, photographer, and city explorer.",
   },
   {
     id: 8,
@@ -421,7 +400,7 @@ export const matchesData = [
     age: 29,
     city: "Seoul",
     country: "South Korea",
-    bio: "A software engineer with a love for gaming and anime. Enjoys attending conventions and gaming tournaments. Loves exploring the vibrant city life.",
+    bio: "Engineer, gamer, and anime lover.",
   },
   {
     id: 9,
@@ -431,9 +410,10 @@ export const matchesData = [
     age: 32,
     city: "New Delhi",
     country: "India",
-    bio: "A yoga instructor who is passionate about wellness and healthy living. Enjoys teaching meditation and exploring spiritual retreats around the world.",
+    bio: "Yoga instructor and wellness enthusiast.",
   },
 ];
+
 
 export const profileData = [
   {
@@ -447,23 +427,18 @@ export const profileData = [
 export interface chatDataProps {
   id: number;
   name: string;
+  lastName: string;
   imgUrl: ImageSourcePropType;
   age: number;
-  isOnline: boolean;
-  lastMessage: string;
-  date: string;
-  timeSent: string;
-  chat: {
-    sender: string;
-    message: string;
-    timestamp: string;
-  }[];
+  city: string;
+  country: string;
+  bio: string;
 }
 
 export interface DataType {
   cardId: number;
   name?: string;
-  
+
   type: string;
   image: ImageSourcePropType;
   backgroundColor: string;

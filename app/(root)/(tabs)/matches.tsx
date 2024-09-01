@@ -13,7 +13,7 @@ import { matchesData } from "@/constants";
 import { useRouter } from "expo-router";
 
 type Match = {
-  imgUrl: ImageSourcePropType;
+  imgUrl: string;
   name: string;
   lastName: string;
   age: number;
@@ -28,6 +28,7 @@ export default function MatchesList() {
     router.push({
       pathname: "/chats",
       params: {
+        pageType:'matches',
         name: `${match.name} ${match.lastName}`,
         imgUrl:match.imgUrl,
         chat: JSON.stringify([]), // Start with an empty chat

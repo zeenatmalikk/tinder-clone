@@ -2,8 +2,6 @@ import React from "react";
 import {
   FlatList,
   Image,
-  KeyboardAvoidingView,
-  Platform,
   Text,
   TextInput,
   TouchableOpacity,
@@ -18,12 +16,11 @@ import {
   PaperAirplaneIcon,
   PhotoIcon,
 } from "react-native-heroicons/outline";
-import { icons } from "@/constants";
 const chats = () => {
   const searchParams = useLocalSearchParams();
   console.log(searchParams, "params");
 
-  const { age, chat, imgUrl, name } = searchParams;
+  const { age, chat, imgUrl, name, pageType } = searchParams;
 
   const chatObj = JSON.parse(chat);
 
@@ -33,7 +30,7 @@ const chats = () => {
         {/* Arrow */}
         <TouchableOpacity
           className="w-2/3 flex-row items-center"
-          onPress={() => router.push("/chat")}
+          onPress={() => router.push(`/${pageType}`)}
         >
           <ChevronLeftIcon size={hp(2.5)} color={"black"} strokeWidth={2} />
           <View className="border-2 rounded-full border-red-400 mr-2 ml-4">

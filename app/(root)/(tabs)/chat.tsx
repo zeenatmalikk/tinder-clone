@@ -3,34 +3,37 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import Matches from "@/components/Matches";
-import { router, useNavigation } from "expo-router";
+import { router } from "expo-router";
 
 const Chat = () => {
-  const navigation = useNavigation();
 
   return (
     <SafeAreaView>
-     <View className="px-4 border-b border-neutral-300">
+      <View className="px-4 border-b border-neutral-300">
         <Text className="uppercase font-semibold text-neutral-500 tracking-wider  py-4">
           Chat
         </Text>
       </View>
       <View className="px-4">
-       
         <FlatList
           data={chatData}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity className="w-full py-3 items-center flex-row border-b  border-neutral-300" onPress={()=>router.push({
-              pathname:'/(root)/chats',
-              params: {
-                chat: JSON.stringify(item.chat),
-                imgUrl: item.imgUrl,
-                name: item.name,
-                age: item.age,
-              },
-            })}>
+            <TouchableOpacity
+              className="w-full py-3 items-center flex-row border-b  border-neutral-300"
+              onPress={() =>
+                router.push({
+                  pathname: "/(root)/chats",
+                  params: {
+                    pageType: "chat",
+                    chat: JSON.stringify(item.chat),
+                    imgUrl: item.imgUrl,
+                    name: item.name,
+                    age: item.age,
+                  },
+                })
+              }
+            >
               {/* Avatar */}
               <View
                 className="w-[17%] justify-center"
@@ -78,9 +81,10 @@ const Chat = () => {
                 </View>
                 <View>
                   <Text className="font-semibold text-xs text-neutral-500">
-                    {item.chat[item.chat.length-1].message.length > 45
-                      ? item.chat[item.chat.length-1].message.slice(0, 45) + "..."
-                      : item.chat[item.chat.length-1].message}
+                    {item.chat[item.chat.length - 1].message.length > 45
+                      ? item.chat[item.chat.length - 1].message.slice(0, 45) +
+                        "..."
+                      : item.chat[item.chat.length - 1].message}
                   </Text>
                 </View>
               </View>
