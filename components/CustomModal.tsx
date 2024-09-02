@@ -1,40 +1,55 @@
-import React from 'react';
-import { Modal, Text, View, Button, TouchableOpacity } from 'react-native';
-import { chatDataProps } from '@/types/type';
+import React from "react";
+import { Modal, Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 interface MatchModalProps {
   visible: boolean;
-  profile: chatDataProps | null;
-  onClose: () => void;
+  profileName:string;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MatchModal: React.FC<MatchModalProps> = ({ visible, profile, onClose }) => {
-
+const MatchModal: React.FC<MatchModalProps> = ({ visible, profileName,setShowModal }) => {
   return (
     <Modal
-      transparent
-      animationType="slide"
+      transparent={true}
       visible={visible}
-      onRequestClose={onClose}
+      animationType="fade"
+      // onRequestClose={onClose}
     >
-      <View className='flex-1 justify-center items-center bg-black bg-opacity-50'>
-        <View className='bg-white p-6 rounded-lg w-4/5'>
-          <Text className='text-xl font-bold text-center mb-4'>It's a Match!</Text>
-          {profile && (
-            <Text className='text-lg text-center mb-6'>
-              {`You and ${profile.name} matched!`}
-            </Text>
-          )}
-          <TouchableOpacity 
-            className='bg-blue-500 p-3 rounded-lg'
-            onPress={onClose}
-          >
-            <Text className='text-white text-center text-lg'>Close</Text>
+      <View style={styles.modalContainer}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalText}>It's a Match!</Text>
+          <TouchableOpacity onPress={()=>setShowModal(false)}>
+            <Text style={styles.closeButton}>Say HI!</Text>
           </TouchableOpacity>
         </View>
       </View>
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  modalText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  closeButton: {
+    fontSize: 16,
+    color: "blue",
+  },
+});
 
 export default MatchModal;
