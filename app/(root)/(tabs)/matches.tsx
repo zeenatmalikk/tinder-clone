@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { matchesData } from "@/constants";
+import { images, matchesData } from "@/constants";
 import { useRouter } from "expo-router";
+import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 
 type Match = {
   imgUrl: string;
@@ -23,14 +24,15 @@ type Match = {
 
 export default function MatchesList() {
   const router = useRouter();
+  const { swipedProfiles } = useSwipedProfiles();
 
   const openChat = (match: Match) => {
     router.push({
       pathname: "/chats",
       params: {
-        pageType:'matches',
+        pageType: "matches",
         name: `${match.name} ${match.lastName}`,
-        imgUrl:match.imgUrl,
+        imgUrl: match.imgUrl,
         chat: JSON.stringify([]), // Start with an empty chat
       },
     });
@@ -51,8 +53,8 @@ export default function MatchesList() {
           paddingTop: hp(2),
         }}
       >
-        {matchesData?.slice(0, 5).map((match, index) => {
-          return (
+        {swipedProfiles.length > 0 ? (
+          swipedProfiles.map((match, index) => (
             <TouchableOpacity
               key={index}
               className="flex flex-row items-center space-x-4 mb-4"
@@ -95,8 +97,26 @@ export default function MatchesList() {
                 </Text>
               </View>
             </TouchableOpacity>
-          );
-        })}
+          ))
+        ) : (
+          <View className="flex items-center">
+            <Image
+              source={images.noMatches} // Add your own image for no matches
+              style={{ width: 200, height: 200, marginBottom: 20 }}
+            />
+            <Text className="text-2xl font-bold text-secondary-900 text-center">
+              No Matches Yet
+            </Text>
+            <Text className="text-lg text-secondary-700 text-center mt-2">
+              Start swiping to find your perfect match!
+            </Text>
+            <View className="mt-8">
+              <Text className="text-base text-gray-500 text-center">
+                You can go to home and explore more profiles.
+              </Text>
+            </View>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
