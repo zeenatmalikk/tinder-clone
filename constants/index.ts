@@ -35,6 +35,7 @@ import user7 from "@/assets/images/user7.jpg";
 import user8 from "@/assets/images/user8.jpg";
 import user4 from "@/assets/images/user4.jpg";
 import myProfile from "@/assets/images/profile.jpg";
+import noMatches from "@/assets/images/no_matches.png";
 import { ImageSourcePropType } from "react-native";
 
 export const images = {
@@ -42,6 +43,7 @@ export const images = {
   check,
   noResult,
   message,
+  noMatches
 };
 
 export const icons = {
@@ -424,16 +426,7 @@ export const profileData = [
     bio: "A passionate adventurer with a love for mountain biking and nature photography. Enjoys playing guitar and creating music during downtime. Always looking for the next thrilling ride or perfect photo opportunity.",
   },
 ];
-export interface chatDataProps {
-  id: number;
-  name: string;
-  lastName: string;
-  imgUrl: ImageSourcePropType;
-  age: number;
-  city: string;
-  country: string;
-  bio: string;
-}
+
 
 export interface DataType {
   cardId: number;

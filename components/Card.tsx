@@ -1,4 +1,6 @@
-import { chatDataProps } from "@/constants";
+// import { chatDataProps } from "@/constants";
+import { useSwipedProfiles } from "@/context/SwipedProfileContext";
+import { chatDataProps } from "@/types/type";
 import React from "react";
 import { Image, Text, useWindowDimensions, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -36,6 +38,8 @@ const Card = ({
   offsetY,
 }: Props) => {
   const { width } = useWindowDimensions();
+  const { addSwipedProfile } = useSwipedProfiles(); // Use the context
+
   const translateX = useSharedValue(0);
   //to store the swipe direction where 1 is right and -1 is left
   const direction = useSharedValue(0);
@@ -66,6 +70,10 @@ const Card = ({
             runOnJS(setCurrentIndex)(currentIndex + 1);
             runOnJS(setNewData)([...newData, newData[currentIndex]]);
           });
+          //if swiped right add it in context
+          if (direction.value === 1) {
+            runOnJS(addSwipedProfile)(item);
+          }
           animatedValue.value = withTiming(currentIndex + 1);
         } else {
           translateX.value = withTiming(0, { duration: 500 });
@@ -127,7 +135,6 @@ const Card = ({
   });
   return (
     <GestureDetector gesture={pan}>
-      
       <Animated.View
         className="absolute w-[360px] h-[450px] rounded-md"
         style={[{ zIndex: dataLength - index }, animatedStyle]}
@@ -142,7 +149,7 @@ const Card = ({
               borderRadius: 15,
             }}
           />
-          
+
           <View className="absolute bottom-5 left-1 w-full px-4 py-2 rounded-lg">
             <Text className="text-white font-JakartaBold text-3xl flex items-center">
               {item.name},{" "}

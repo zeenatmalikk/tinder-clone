@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   heightPercentageToDP as hp,
@@ -7,8 +7,13 @@ import {
 } from "react-native-responsive-screen";
 import { profileData } from "@/constants";
 import { CameraIcon } from "react-native-heroicons/outline";
+import { useUser } from "@clerk/clerk-expo";
+import { SignOutButton, useAuth } from "@clerk/clerk-react";
+import LogoutButton from "@/components/Logout";
 const Profile = () => {
   const data = profileData[0];
+  const { user } = useUser();
+  const { signOut } = useAuth();
 
   return (
     <ScrollView
@@ -30,21 +35,19 @@ const Profile = () => {
       </View>
       <View className="w-full absolute flex-row justify-end items-center pt-10">
         <View className="p-2 rounded-full bg-black/40 mr-5 justify-center items-center">
-          <CameraIcon size={hp(3.5)} color="white" strokeWidth={1.5} />
+          <LogoutButton />
         </View>
       </View>
       <View className="w-full justify-start items-start px-6 space-y-4 mt-6">
         <View className="flex-row space-x-2 justify-between w-full items-center">
           <View className="flex-row ">
             <Text className="text-black text-center font-bold text-xl">
-              {data.name}
-              {", "}
+              {user?.emailAddresses[0].emailAddress}
             </Text>
             <Text className="text-black text-center font-bold text-xl ">
               {data.age}
             </Text>
           </View>
-
         </View>
 
         {/* User hobbies */}

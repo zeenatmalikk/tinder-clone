@@ -1,9 +1,10 @@
-import { chatData, chatDataProps, matchesData, profileData } from "@/constants";
+import { chatData, matchesData, profileData } from "@/constants";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Card from "./Card";
 import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
+import { chatDataProps } from "@/types/type";
 
 const CardStack = () => {
   const [newData, setNewData] = useState<chatDataProps[]>(matchesData);
