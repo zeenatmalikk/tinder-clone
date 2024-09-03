@@ -5,11 +5,10 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
-  ImageSourcePropType,
+  Platform,
 } from "react-native";
 import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { images, matchesData } from "@/constants";
 import { useRouter } from "expo-router";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 
@@ -99,19 +98,38 @@ export default function MatchesList() {
             </TouchableOpacity>
           ))
         ) : (
-          <View className="flex items-center">
-            <Image
-              source={images.noMatches} // Add your own image for no matches
-              style={{ width: 200, height: 200, marginBottom: 20 }}
-            />
-            <Text className="text-2xl font-bold text-secondary-900 text-center">
+          <View className="flex items-center h-3/4">
+            <Text
+              style={{
+                fontSize: hp(15),
+              }}
+              className="text-[150px]"
+            >
+              👀
+            </Text>
+            <Text
+              style={{
+                fontSize: hp(3),
+              }}
+              className=" font-bold text-secondary-900 text-center"
+            >
               No Matches Yet
             </Text>
-            <Text className="text-lg text-secondary-700 text-center mt-2">
+            <Text
+              style={{
+                fontSize: Platform.OS == "ios" ? hp(2) : hp(2.5),
+              }}
+              className="text-neutral-500 text-center text-lg w-[80%] font-JakartaBold"
+            >
               Start swiping to find your perfect match!
             </Text>
             <View className="mt-8">
-              <Text className="text-base text-gray-500 text-center">
+              <Text
+                style={{
+                  fontSize: hp(2.1),
+                }}
+                className="text-base text-gray-500 text-center"
+              >
                 You can go to home and explore more profiles.
               </Text>
             </View>

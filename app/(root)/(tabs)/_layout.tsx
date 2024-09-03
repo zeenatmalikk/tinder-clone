@@ -1,6 +1,8 @@
+import Navbar from "@/components/Navbar";
 import { icons } from "@/constants";
-import { Stack, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import { Image, ImageSourcePropType, View } from "react-native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const TabIcon = ({
   source,
@@ -16,7 +18,7 @@ const TabIcon = ({
   >
     <View
       className={`rounded-full w-12 h-12 items-center justify-center ${
-        focused ? "bg-general-100 text-white" : ""
+        focused ? "bg-primaryBg-100 text-white" : ""
       }`}
     >
       <Image
@@ -28,71 +30,73 @@ const TabIcon = ({
     </View>
   </View>
 );
-
 export default function Layout() {
   return (
-    <Tabs
-      initialRouteName="index"
-      screenOptions={{
-        tabBarActiveTintColor: "white",
-        tabBarInactiveTintColor: "white",
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: "#424242",
-          borderRadius: 50,
-          paddingBottom: 0, 
-          overflow: "hidden",
-          marginHorizontal: 20,
-          marginBottom: 20,
-          height: 78,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexDirection: "row",
-          position: "absolute",
-        },
-      }}
-    >
-      <Tabs.Screen
-        name="home"
-        options={{
-          title: "Home",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon source={icons.home} focused={focused} />
-          ),
+    <View className="flex-1">
+      <Navbar />
+      <Tabs
+        initialRouteName="index"
+        screenOptions={{
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "white",
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            backgroundColor: "#371f7d",
+            borderRadius: 50,
+            paddingBottom: 0,
+            overflow: "hidden",
+            marginHorizontal: 20,
+            marginBottom: 20,
+            height: hp(10),
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+            position: "absolute",
+          },
         }}
-      />
-      <Tabs.Screen
-        name="matches"
-        options={{
-          title: "List",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon source={icons.list} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="chat"
-        options={{
-          title: "Chat",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon source={icons.chat} focused={focused} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon source={icons.profile} focused={focused} />
-          ),
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: "Home",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon source={icons.home} focused={focused} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="matches"
+          options={{
+            title: "List",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon source={icons.list} focused={focused} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="chatList"
+          options={{
+            title: "ChatList",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon source={icons.chat} focused={focused} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: "Profile",
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon source={icons.profile} focused={focused} />
+            ),
+          }}
+        />
+      </Tabs>
+    </View>
   );
 }

@@ -20,14 +20,13 @@ const chats = () => {
   const searchParams = useLocalSearchParams();
   console.log(searchParams, "params");
 
-  const { age, chat, imgUrl, name, pageType } = searchParams;
+  const { age, chat, imgUrl, name, pageType, date } = searchParams;
 
   const chatObj = JSON.parse(chat);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1">
       <View className="justify-between items-center flex-row w-full px-4 pb-2 border-b border-neutral-400">
-        {/* Arrow */}
         <TouchableOpacity
           className="w-2/3 flex-row items-center"
           onPress={() => router.push(`/${pageType}`)}
@@ -49,12 +48,13 @@ const chats = () => {
               {", "}
               {age}
             </Text>
-            <Text className="text-xs text-neutral-400">You matched today</Text>
+            <Text className="text-xs text-neutral-400">
+              {date ? `You matched on ${date}` : ""}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
       <View className="w-full h-full">
-        <Text className="text-center text-neutral-400 pt-4">Today</Text>
         {chatObj && (
           <FlatList
             data={chatObj}
@@ -72,7 +72,6 @@ const chats = () => {
               >
                 <View
                   style={{
-                    // width: item.sender === "me" ? "60%" : "70%",
                     width: "auto",
                     maxWidth: item.sender === "me" ? "70%" : "70%",
                   }}
@@ -83,11 +82,16 @@ const chats = () => {
                       borderBottomRightRadius: item.sender === "me" ? 0 : 10,
                       borderBottomLeftRadius: item.sender === "me" ? 10 : 0,
                       backgroundColor:
-                        item.sender === "me" ? "#3B82F6" : "#2B2B2E",
+                        item.sender === "me" ? "#bc96ff" : "#371f7d",
                     }}
                     className="p-4 rounded-lg"
                   >
-                    <Text className="text-white text-base leading-5 ">
+                    <Text
+                      style={{
+                        color: item.sender === "me" ? "#371f7d" : "#fff",
+                      }}
+                      className="text-white text-base leading-5 font-JakartaMedium"
+                    >
                       {item.message}
                     </Text>
                   </View>
@@ -105,7 +109,7 @@ const chats = () => {
         )}
       </View>
 
-      <View className="absolute flex-row justify-between items-center w-full px-4 pb-12 pt-2 bg-white bottom-8">
+      <View className="absolute flex-row justify-between items-center w-full px-4 pb-12 pt-2 bg-white bottom-0">
         <View className="flex-row items-center rounded-2xl bg-neutral-200 px-3 py-3 w-[85%] ">
           <TextInput
             placeholder="Write your message here"
@@ -123,7 +127,7 @@ const chats = () => {
           </View>
         </View>
 
-        <View className="bg-blue-500 rounded-2xl py-3 w-[13%] justify-center items-center ">
+        <View className="bg-indigo-100 rounded-2xl py-3 w-[13%] justify-center items-center ">
           <PaperAirplaneIcon color={"white"} />
         </View>
       </View>

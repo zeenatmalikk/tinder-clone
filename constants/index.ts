@@ -1,30 +1,13 @@
-import arrowUp from "@/assets/icons/arrow-up.png";
-import backArrow from "@/assets/icons/back-arrow.png";
 import chat from "@/assets/icons/chat.png";
 import close from "@/assets/icons/close.png";
-import dollar from "@/assets/icons/dollar.png";
 import email from "@/assets/icons/email.png";
-import eyecross from "@/assets/icons/eyecross.png";
-import google from "@/assets/icons/google.png";
 import home from "@/assets/icons/home.png";
 import list from "@/assets/icons/list.png";
 import lock from "@/assets/icons/lock.png";
-import map from "@/assets/icons/map.png";
-import marker from "@/assets/icons/marker.png";
-import out from "@/assets/icons/out.png";
 import person from "@/assets/icons/person.png";
-import pin from "@/assets/icons/pin.png";
-import point from "@/assets/icons/point.png";
 import profile from "@/assets/icons/profile.png";
-import search from "@/assets/icons/search.png";
-import selectedMarker from "@/assets/icons/selected-marker.png";
-import star from "@/assets/icons/star.png";
-import target from "@/assets/icons/target.png";
+import icon from "@/assets/images/logo.png";
 import to from "@/assets/icons/to.png";
-import check from "@/assets/images/check.png";
-import getStarted from "@/assets/images/get-started.png";
-import message from "@/assets/images/message.png";
-import noResult from "@/assets/images/no-result.png";
 import user1 from "@/assets/images/user1.jpg";
 import user2 from "@/assets/images/user2.jpg";
 import user3 from "@/assets/images/user3.jpg";
@@ -36,48 +19,32 @@ import user8 from "@/assets/images/user8.jpg";
 import user4 from "@/assets/images/user4.jpg";
 import myProfile from "@/assets/images/profile.jpg";
 import noMatches from "@/assets/images/no_matches.png";
-import { ImageSourcePropType } from "react-native";
+import check from "@/assets/images/check.png";
 
 export const images = {
-  getStarted,
+  noMatches,
+  icon,
   check,
-  noResult,
-  message,
-  noMatches
 };
 
 export const icons = {
-  arrowUp,
-  backArrow,
   chat,
   close,
-  dollar,
   email,
-  eyecross,
-  google,
   home,
   list,
   lock,
-  map,
-  marker,
-  out,
   person,
-  pin,
-  point,
   profile,
-  search,
-  selectedMarker,
-  star,
-  target,
   to,
 };
 
 export const chatData = [
   {
     id: 1,
-    name: "Betty",
+    name: "Amelia",
     imgUrl: user1,
-    age: 32,
+    age: 24,
     isOnline: true,
     lastMessage:
       "That sounds like a lot of fun. Would you like to go together sometime?",
@@ -90,7 +57,7 @@ export const chatData = [
         timestamp: "10:00 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "I am doing great, thanks!",
         timestamp: "10:05 AM",
       },
@@ -100,7 +67,7 @@ export const chatData = [
         timestamp: "10:10 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "Yes, I'm thinking of going hiking. 🏞️ What about you?",
         timestamp: "10:15 AM",
       },
@@ -110,7 +77,7 @@ export const chatData = [
         timestamp: "10:20 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "That would be great! The more, the merrier. 🌟",
         timestamp: "10:25 AM",
       },
@@ -118,9 +85,9 @@ export const chatData = [
   },
   {
     id: 2,
-    name: "Basquit",
+    name: "Liam",
     imgUrl: user2,
-    age: 28,
+    age: 27,
     isOnline: false,
     lastMessage: "Sure, let's do that. When are you free?",
     date: "2023-10-14",
@@ -175,9 +142,9 @@ export const chatData = [
   },
   {
     id: 3,
-    name: "Oliver",
+    name: "Sophia",
     imgUrl: user3,
-    age: 30,
+    age: 26,
     isOnline: true,
     lastMessage: "Sounds like a plan! Let's make it happen.",
     date: "2023-10-11",
@@ -189,7 +156,7 @@ export const chatData = [
         timestamp: "2:00 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "It's going great! Enjoying the sunshine. How about you?",
         timestamp: "2:05 PM",
       },
@@ -199,7 +166,7 @@ export const chatData = [
         timestamp: "2:10 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "Don't work too hard! Make sure to take breaks. 🌞",
         timestamp: "2:15 PM",
       },
@@ -210,7 +177,7 @@ export const chatData = [
         timestamp: "2:20 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "I might go to the gym later. Need to work off some steam. 💪",
         timestamp: "2:25 PM",
       },
@@ -220,7 +187,7 @@ export const chatData = [
         timestamp: "2:30 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "Definitely! The more, the merrier. 🤸‍♂️",
         timestamp: "2:35 PM",
       },
@@ -228,9 +195,9 @@ export const chatData = [
   },
   {
     id: 4,
-    name: "Sophie",
+    name: "James",
     imgUrl: user4,
-    age: 27,
+    age: 29,
     isOnline: true,
     lastMessage: "Definitely! Looking forward to it.",
     date: "2023-10-10",
@@ -243,12 +210,12 @@ export const chatData = [
       },
 
       {
-        sender: "Sophie",
+        sender: "James",
         message: "It's been busy but good. How about you?",
         timestamp: "3:05 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message: "And also tired",
         timestamp: "3:05 PM",
       },
@@ -258,7 +225,7 @@ export const chatData = [
         timestamp: "3:10 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message: "That's good to hear. Any exciting plans for the weekend?",
         timestamp: "3:15 PM",
       },
@@ -269,19 +236,18 @@ export const chatData = [
         timestamp: "3:20 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message:
           "I'm planning to go hiking with some friends. You should join us sometime!",
         timestamp: "3:25 PM",
       },
     ],
   },
-
   {
     id: 5,
-    name: "William",
+    name: "Isabella",
     imgUrl: user5,
-    age: 29,
+    age: 30,
     isOnline: false,
     lastMessage: "Let me check my schedule and get back to you.",
     date: "2023-10-09",
@@ -293,7 +259,7 @@ export const chatData = [
         timestamp: "4:00 PM",
       },
       {
-        sender: "William",
+        sender: "Isabella",
         message: "Things are going well. How about you?",
         timestamp: "4:05 PM",
       },
@@ -301,9 +267,9 @@ export const chatData = [
   },
   {
     id: 6,
-    name: "Jack",
+    name: "Lucas",
     imgUrl: user6,
-    age: 30,
+    age: 28,
     isOnline: true,
     lastMessage: "Sounds like a great idea. Let's make it happen.",
     date: "2023-10-07",
@@ -315,7 +281,7 @@ export const chatData = [
         timestamp: "6:00 PM",
       },
       {
-        sender: "Jack",
+        sender: "Lucas",
         message: "It's been busy but good. How about you?",
         timestamp: "6:05 PM",
       },
@@ -323,7 +289,7 @@ export const chatData = [
   },
 ];
 
-export const matchesData = [
+export const profilesData = [
   {
     id: 1,
     imgUrl: user1,
@@ -416,7 +382,6 @@ export const matchesData = [
   },
 ];
 
-
 export const profileData = [
   {
     name: "Ethan Brown",
@@ -424,42 +389,5 @@ export const profileData = [
     imgUrl: myProfile,
     hobbies: ["Mountain Biking", "Guitar Playing", "Photography"],
     bio: "A passionate adventurer with a love for mountain biking and nature photography. Enjoys playing guitar and creating music during downtime. Always looking for the next thrilling ride or perfect photo opportunity.",
-  },
-];
-
-
-export interface DataType {
-  cardId: number;
-  name?: string;
-
-  type: string;
-  image: ImageSourcePropType;
-  backgroundColor: string;
-}
-
-export const data: DataType[] = [
-  {
-    cardId: 1,
-    name: "Rakha Wibowo",
-
-    type: "mastercard",
-    image: user1,
-    backgroundColor: "#6d85a4",
-  },
-  {
-    cardId: 2,
-    name: "Rakha Wibowo",
-
-    type: "visa",
-    image: user2,
-    backgroundColor: "#86b4ee",
-  },
-  {
-    cardId: 3,
-    name: "Rakha Wibowo",
-
-    type: "visa",
-    image: user3,
-    backgroundColor: "#795de7",
   },
 ];
