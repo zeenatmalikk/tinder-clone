@@ -3,24 +3,34 @@ import InputField from "@/components/InputField";
 // import OAuth from "@/components/OAuth";
 import { icons, images } from "@/constants";
 // import { fetchAPI } from "@/lib/fetch";
-import { useSignUp } from "@clerk/clerk-expo";
+import { useAuth, useClerk, useSignUp } from "@clerk/clerk-expo";
 import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { ReactNativeModal } from "react-native-modal";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Clerk } from "@clerk/clerk-js";
+
 const SignUp = () => {
+  const clerk = new Clerk(
+    process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY as string
+  );
+
   const { isLoaded, signUp, setActive } = useSignUp();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     password: "",
+
+    age: "",
   });
   const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
+    age: "",
   });
   const [verification, setVerification] = useState({
     state: "default",
@@ -29,7 +39,7 @@ const SignUp = () => {
   });
   const validateForm = () => {
     let valid = true;
-    const newErrors = { name: "", email: "", password: "" };
+    const newErrors = { name: "", email: "", password: "", age: "" };
 
     if (!form.name) {
       newErrors.name = "Name is required";
@@ -42,6 +52,10 @@ const SignUp = () => {
       valid = false;
     } else if (!emailRegex.test(form.email)) {
       newErrors.email = "Invalid email format";
+      valid = false;
+    }
+    if (!form.age) {
+      newErrors.email = "Age is required";
       valid = false;
     }
 
@@ -60,7 +74,7 @@ const SignUp = () => {
     if (!isLoaded) {
       return;
     }
- if (!validateForm()) {
+    if (!validateForm()) {
       return;
     }
     try {
@@ -77,7 +91,6 @@ const SignUp = () => {
       console.error(JSON.stringify(err, null, 2));
     }
   };
-
   const onPressVerify = async () => {
     if (!isLoaded) {
       return;
@@ -87,12 +100,17 @@ const SignUp = () => {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code: verification.code,
       });
-
+      
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({ ...verification, state: "success" });
+        await clerk.user?.update({
+          firstName: form.name,
+          unsafeMetadata: {
+            age: form.age,
+          },
+        });
       } else {
-
         setVerification({
           ...verification,
           error: "Verification failed",
@@ -110,16 +128,20 @@ const SignUp = () => {
     }
   };
   return (
-    // bit more height
-    <ScrollView className="flex-1 bg-white">
+    <KeyboardAwareScrollView
+      className="flex-1 bg-white"
+      contentContainerStyle={{ flexGrow: 0.3 }}
+      enableOnAndroid={true}
+      extraScrollHeight={10}
+      keyboardShouldPersistTaps="handled"
+    >
       <View className="flex-1 bg-white">
-        <View className="relative w-full h-[250px]">
-          {/* <Image source={images.signUpCar} className="z-0 w-full h-[250px]" /> */}
-          <Text className="text-2xl text-black font-JakartaSemiBold absolute bottom-5 left-5">
+        <View className="relative w-full h-[200px]">
+          <Text className="text-2xl text-black font-JakartaSemiBold absolute bottom-7 text-center w-full">
             Create your account
           </Text>
         </View>
-        <View className="p-5">
+        <View className="px-5">
           <InputField
             label="Name"
             placeholder="Enter name"
@@ -129,11 +151,18 @@ const SignUp = () => {
             onChangeText={(value) => setForm({ ...form, name: value })}
           />
           <InputField
+            label="Age"
+            placeholder="Enter Age"
+            icon={icons.person}
+            value={form.age}
+            error={errors.age}
+            onChangeText={(value) => setForm({ ...form, age: value })}
+          />
+          <InputField
             label="Email"
             placeholder="Enter email"
             icon={icons.email}
             error={errors.email}
-
             textContentType="emailAddress"
             value={form.email}
             onChangeText={(value) => setForm({ ...form, email: value })}
@@ -141,7 +170,6 @@ const SignUp = () => {
           <InputField
             label="Password"
             error={errors.password}
-
             placeholder="Enter password"
             icon={icons.lock}
             secureTextEntry={true}
@@ -161,7 +189,7 @@ const SignUp = () => {
             className="text-lg text-center text-general-200 mt-4"
           >
             <Text>Already have an account? </Text>
-            <Text className="text-primary-500">Log In</Text>
+            <Text className="text-indigo-100 underline">Log In</Text>
           </Link>
           {/* Modal for verification */}
 
@@ -226,7 +254,7 @@ const SignUp = () => {
           </ReactNativeModal>
         </View>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 

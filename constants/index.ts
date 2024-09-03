@@ -17,6 +17,7 @@ import pin from "@/assets/icons/pin.png";
 import point from "@/assets/icons/point.png";
 import profile from "@/assets/icons/profile.png";
 import search from "@/assets/icons/search.png";
+import icon from "@/assets/images/logo.png";
 import selectedMarker from "@/assets/icons/selected-marker.png";
 import star from "@/assets/icons/star.png";
 import target from "@/assets/icons/target.png";
@@ -43,7 +44,8 @@ export const images = {
   check,
   noResult,
   message,
-  noMatches
+  noMatches,
+  icon,
 };
 
 export const icons = {
@@ -75,9 +77,9 @@ export const icons = {
 export const chatData = [
   {
     id: 1,
-    name: "Betty",
+    name: "Amelia",
     imgUrl: user1,
-    age: 32,
+    age: 24,
     isOnline: true,
     lastMessage:
       "That sounds like a lot of fun. Would you like to go together sometime?",
@@ -90,7 +92,7 @@ export const chatData = [
         timestamp: "10:00 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "I am doing great, thanks!",
         timestamp: "10:05 AM",
       },
@@ -100,7 +102,7 @@ export const chatData = [
         timestamp: "10:10 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "Yes, I'm thinking of going hiking. 🏞️ What about you?",
         timestamp: "10:15 AM",
       },
@@ -110,7 +112,7 @@ export const chatData = [
         timestamp: "10:20 AM",
       },
       {
-        sender: "Betty",
+        sender: "Amelia",
         message: "That would be great! The more, the merrier. 🌟",
         timestamp: "10:25 AM",
       },
@@ -118,9 +120,9 @@ export const chatData = [
   },
   {
     id: 2,
-    name: "Basquit",
+    name: "Liam",
     imgUrl: user2,
-    age: 28,
+    age: 27,
     isOnline: false,
     lastMessage: "Sure, let's do that. When are you free?",
     date: "2023-10-14",
@@ -175,9 +177,9 @@ export const chatData = [
   },
   {
     id: 3,
-    name: "Oliver",
+    name: "Sophia",
     imgUrl: user3,
-    age: 30,
+    age: 26,
     isOnline: true,
     lastMessage: "Sounds like a plan! Let's make it happen.",
     date: "2023-10-11",
@@ -189,7 +191,7 @@ export const chatData = [
         timestamp: "2:00 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "It's going great! Enjoying the sunshine. How about you?",
         timestamp: "2:05 PM",
       },
@@ -199,7 +201,7 @@ export const chatData = [
         timestamp: "2:10 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "Don't work too hard! Make sure to take breaks. 🌞",
         timestamp: "2:15 PM",
       },
@@ -210,7 +212,7 @@ export const chatData = [
         timestamp: "2:20 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "I might go to the gym later. Need to work off some steam. 💪",
         timestamp: "2:25 PM",
       },
@@ -220,7 +222,7 @@ export const chatData = [
         timestamp: "2:30 PM",
       },
       {
-        sender: "Oliver",
+        sender: "Sophia",
         message: "Definitely! The more, the merrier. 🤸‍♂️",
         timestamp: "2:35 PM",
       },
@@ -228,9 +230,9 @@ export const chatData = [
   },
   {
     id: 4,
-    name: "Sophie",
+    name: "James",
     imgUrl: user4,
-    age: 27,
+    age: 29,
     isOnline: true,
     lastMessage: "Definitely! Looking forward to it.",
     date: "2023-10-10",
@@ -243,12 +245,12 @@ export const chatData = [
       },
 
       {
-        sender: "Sophie",
+        sender: "James",
         message: "It's been busy but good. How about you?",
         timestamp: "3:05 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message: "And also tired",
         timestamp: "3:05 PM",
       },
@@ -258,7 +260,7 @@ export const chatData = [
         timestamp: "3:10 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message: "That's good to hear. Any exciting plans for the weekend?",
         timestamp: "3:15 PM",
       },
@@ -269,19 +271,18 @@ export const chatData = [
         timestamp: "3:20 PM",
       },
       {
-        sender: "Sophie",
+        sender: "James",
         message:
           "I'm planning to go hiking with some friends. You should join us sometime!",
         timestamp: "3:25 PM",
       },
     ],
   },
-
   {
     id: 5,
-    name: "William",
+    name: "Isabella",
     imgUrl: user5,
-    age: 29,
+    age: 30,
     isOnline: false,
     lastMessage: "Let me check my schedule and get back to you.",
     date: "2023-10-09",
@@ -293,7 +294,7 @@ export const chatData = [
         timestamp: "4:00 PM",
       },
       {
-        sender: "William",
+        sender: "Isabella",
         message: "Things are going well. How about you?",
         timestamp: "4:05 PM",
       },
@@ -301,9 +302,9 @@ export const chatData = [
   },
   {
     id: 6,
-    name: "Jack",
+    name: "Lucas",
     imgUrl: user6,
-    age: 30,
+    age: 28,
     isOnline: true,
     lastMessage: "Sounds like a great idea. Let's make it happen.",
     date: "2023-10-07",
@@ -315,7 +316,7 @@ export const chatData = [
         timestamp: "6:00 PM",
       },
       {
-        sender: "Jack",
+        sender: "Lucas",
         message: "It's been busy but good. How about you?",
         timestamp: "6:05 PM",
       },
@@ -416,7 +417,6 @@ export const matchesData = [
   },
 ];
 
-
 export const profileData = [
   {
     name: "Ethan Brown",
@@ -426,7 +426,6 @@ export const profileData = [
     bio: "A passionate adventurer with a love for mountain biking and nature photography. Enjoys playing guitar and creating music during downtime. Always looking for the next thrilling ride or perfect photo opportunity.",
   },
 ];
-
 
 export interface DataType {
   cardId: number;

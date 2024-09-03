@@ -2,7 +2,14 @@
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { chatDataProps } from "@/types/type";
 import React, { useState } from "react";
-import { Image, Text, useWindowDimensions, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { MapPinIcon } from "react-native-heroicons/outline";
 import Animated, {
@@ -39,12 +46,15 @@ const Card = ({
   offsetY,
 }: Props) => {
   const { width } = useWindowDimensions();
+  const screenHeight = Dimensions.get("window").height;
+
   const { addSwipedProfile } = useSwipedProfiles(); // Use the context
   const [showModal, setShowModal] = useState(false); // State for modal visibility
 
   const translateX = useSharedValue(0);
   //to store the swipe direction where 1 is right and -1 is left
   const direction = useSharedValue(0);
+
   const pan = Gesture.Pan()
     .onUpdate((e) => {
       const isSwipeRight = e.translationX > 0;
@@ -136,12 +146,22 @@ const Card = ({
       opacity: interpolate(translateX.value, [-width / 6, 0], [1, 0]),
     };
   });
+  const cardWidth = width * 0.8; // 90% of the screen width
+  const cardHeight = screenHeight * 0.5;
   return (
     <>
       <GestureDetector gesture={pan}>
         <Animated.View
           className="absolute w-[360px] h-[450px] rounded-md"
-          style={[{ zIndex: dataLength - index }, animatedStyle]}
+          style={[
+            {
+              zIndex: dataLength - index,
+              width: cardWidth, 
+              height: cardHeight, 
+              alignSelf: "center", 
+            },
+            animatedStyle,
+          ]}
           key={item.id}
         >
           <View className="relative">
@@ -171,15 +191,6 @@ const Card = ({
               </View>
             </View>
 
-            {/* <Text
-            className="absolute bottom-5 left-3 text-white text-lg font-bold"
-            style={{
-              // textShadowColor: "rgba(0, 0, 0, 0.75)",
-              width: "50%",
-            }}
-          >
-            {`${item.name}, ${item.age}\n${item.bio}`}
-          </Text> */}
             <Animated.View
               className="absolute top-2 left-2"
               style={likeOpacity}

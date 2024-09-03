@@ -1,3 +1,5 @@
+import { TextInputProps, TouchableOpacityProps } from "react-native";
+
 declare interface ButtonProps extends TouchableOpacityProps {
   title: string;
   bgVariant?: "primary" | "secondary" | "danger" | "outline" | "success";
@@ -5,7 +7,6 @@ declare interface ButtonProps extends TouchableOpacityProps {
   IconLeft?: React.ComponentType<any>;
   IconRight?: React.ComponentType<any>;
   className?: string;
-  
 }
 
 declare interface InputFieldProps extends TextInputProps {
@@ -17,8 +18,7 @@ declare interface InputFieldProps extends TextInputProps {
   inputStyle?: string;
   iconStyle?: string;
   className?: string;
-  error?: string;
-  
+  error?: string | undefined; 
 }
 
 export interface chatDataProps {

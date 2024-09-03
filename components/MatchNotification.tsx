@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { useRouter } from "expo-router";
-import { XCircleIcon } from "react-native-heroicons/outline"; // Import an icon for the close button
+import { formatDate } from "@/lib/utils";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const MatchNotification: React.FC = () => {
-  const { swipedProfiles, matchStatus } = useSwipedProfiles();
+  const { matchStatus } = useSwipedProfiles();
   const router = useRouter();
 
   // Handle notification state
@@ -22,23 +24,21 @@ const MatchNotification: React.FC = () => {
   }, [matchStatus]);
 
   const handleSayHi = () => {
-    const profile = swipedProfiles.find(
-      (profile) => profile.name === matchStatus?.message.split(" ").pop()
-    ); // Extract profile name
-    console.log('in profile',profile);
-    // if (profile) {
-        
+    if (matchStatus && matchStatus.profile) {
+      const profile = matchStatus.profile;
+
       router.push({
         pathname: "/chats",
         params: {
-          pageType: "matches",
-          name: `${notificationMessage.split(" ").pop()}`,
-        //   imgUrl: profile.imgUrl,
-          chat: JSON.stringify([]), // Start with an empty chat
+          pageType: "/home",
+          name: profile.name,
+          imgUrl: profile.imgUrl, // Pass the profile image URL
+          chat: JSON.stringify([]),
+          date: formatDate(),
         },
       });
-    // }
-    setNotificationVisible(false)
+    }
+    setNotificationVisible(false);
   };
 
   const handleClose = () => {
@@ -46,33 +46,38 @@ const MatchNotification: React.FC = () => {
   };
 
   return notificationVisible ? (
-    <View className="absolute top-10 left-0 right-0 mx-4 bg-black bg-opacity-70 rounded-lg shadow-lg z-50 p-8">
-      <TouchableOpacity
+    <View
+      className="absolute left-0 right-0 mx-4 bg-black bg-opacity-70 rounded-lg shadow-lg z-50 p-8"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
+    >
+      {/* <TouchableOpacity
         className="absolute top-2 right-2 p-4"
         onPress={handleClose}
       >
         <XCircleIcon color="#fff" size={24} />
-      </TouchableOpacity>
-      <Text className="text-white text-lg font-bold mb-5 w-[80%]">
+      </TouchableOpacity> */}
+      <Text className="text-white text-lg font-bold mb-5">
         {notificationMessage}
       </Text>
-      {isNewMatch ? (
+
+      <View className="flex flex-row w-full gap-2">
         <TouchableOpacity
-          className="bg-blue-500 p-3 rounded-lg mt-2"
-          onPress={handleSayHi}
-        >
-          <Text className="text-white text-center font-semibold">
-            Say Hi to {notificationMessage.split(" ").pop()}
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          className="bg-red-500 p-3 rounded-lg mt-2"
+       
+          className="bg-red-500  rounded-lg mt-2 w-[50%] flex items-center justify-center"
           onPress={handleClose}
         >
           <Text className="text-white text-center font-semibold">Close</Text>
         </TouchableOpacity>
-      )}
+        <TouchableOpacity
+          className="bg-primaryBg-100 p-3 rounded-lg mt-2 w-[50%]"
+          onPress={handleSayHi}
+        >
+          <Text className="text-indigo-100 text-center font-JakartaBold">
+            Say Hi to {notificationMessage.split(" ").pop()}
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {/* )} */}
     </View>
   ) : null;
 };
