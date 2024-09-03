@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { formatDate } from "@/lib/utils";
 
 const MatchNotification: React.FC = () => {
-  const { matchStatus } = useSwipedProfiles();
+  const { matchStatus, resetMatchStatus } = useSwipedProfiles();
   const router = useRouter();
 
   // Handle notification state
@@ -26,15 +26,16 @@ const MatchNotification: React.FC = () => {
       router.push({
         pathname: "/chats",
         params: {
-          pageType: "/home",
+          pageType: "matches",
           name: profile.name,
           imgUrl: profile.imgUrl,
           chat: JSON.stringify([]),
           date: formatDate(),
         },
       });
+      resetMatchStatus();
+      setNotificationVisible(false);
     }
-    setNotificationVisible(false);
   };
 
   const handleClose = () => {

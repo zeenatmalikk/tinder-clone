@@ -5,6 +5,8 @@ type SwipedProfilesContextType = {
   swipedProfiles: chatDataProps[];
   addSwipedProfile: (profile: chatDataProps) => boolean;
   matchStatus: { profile: chatDataProps | null; message: string } | null;
+  resetMatchStatus: () => void; 
+
 };
 
 const SwipedProfilesContext = createContext<
@@ -38,9 +40,12 @@ export const SwipedProfilesProvider: React.FC<{
     }
   };
 
+  const resetMatchStatus = () => {
+    setMatchStatus(null); 
+  };
   return (
     <SwipedProfilesContext.Provider
-      value={{ swipedProfiles, addSwipedProfile, matchStatus }}
+      value={{ swipedProfiles, addSwipedProfile, matchStatus ,resetMatchStatus}}
     >
       {children}
     </SwipedProfilesContext.Provider>
