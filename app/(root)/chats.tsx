@@ -27,7 +27,6 @@ const chats = () => {
   return (
     <SafeAreaView className="flex-1">
       <View className="justify-between items-center flex-row w-full px-4 pb-2 border-b border-neutral-400">
-        {/* Arrow */}
         <TouchableOpacity
           className="w-2/3 flex-row items-center"
           onPress={() => router.push(`/${pageType}`)}

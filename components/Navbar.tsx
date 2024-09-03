@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Image, Pressable, Text, View } from "react-native";
+import { Dimensions, Image, Text, View } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { router } from "expo-router";
@@ -18,9 +18,8 @@ const Navbar = () => {
     <View
       style={{
         paddingHorizontal: width * 0.05, // 5% of screen width
-        // Adjust for status bar height
       }}
-      className="flex-row items-center justify-between px-4 pb-4 bg-indigo-100 pt-12"
+      className="flex-row items-center justify-between px-4 pb-4 bg-[#BBACD8] pt-11 rounded-b-xl"
     >
       <TouchableOpacity onPress={() => router.push("/profile")}>
         <Image
@@ -34,7 +33,7 @@ const Navbar = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={handleLogout}
-        className="bg-primaryBg-100 px-5 py-2 rounded-md"
+        className="bg-indigo-100 px-5 py-2 rounded-md"
       >
         <Text className="text-sm text-white text-center font-JakartaBold ">
           Logout

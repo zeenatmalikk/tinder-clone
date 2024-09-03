@@ -1,11 +1,9 @@
-// import { chatDataProps } from "@/constants";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { chatDataProps } from "@/types/type";
 import React, { useState } from "react";
 import {
   Dimensions,
   Image,
-  StyleSheet,
   Text,
   useWindowDimensions,
   View,
@@ -20,7 +18,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import MatchModal from "./CustomModal";
 type Props = {
   item: chatDataProps;
   index: number;
@@ -43,7 +40,6 @@ const Card = ({
   setCurrentIndex,
   setNewData,
   newData,
-  offsetY,
 }: Props) => {
   const { width } = useWindowDimensions();
   const screenHeight = Dimensions.get("window").height;
@@ -147,7 +143,8 @@ const Card = ({
     };
   });
   const cardWidth = width * 0.8; // 90% of the screen width
-  const cardHeight = screenHeight * 0.5;
+  const cardHeight = screenHeight * 0.5; //50% of the screen height
+
   return (
     <>
       <GestureDetector gesture={pan}>
@@ -156,9 +153,9 @@ const Card = ({
           style={[
             {
               zIndex: dataLength - index,
-              width: cardWidth, 
-              height: cardHeight, 
-              alignSelf: "center", 
+              width: cardWidth,
+              height: cardHeight,
+              alignSelf: "center",
             },
             animatedStyle,
           ]}
@@ -196,7 +193,7 @@ const Card = ({
               style={likeOpacity}
             >
               <Image
-                source={require("../assets/images/LIKE.png")} // Replace with your like image path
+                source={require("../assets/images/LIKE.png")}
                 style={{ width: 150, height: 100 }}
               />
             </Animated.View>
@@ -207,18 +204,13 @@ const Card = ({
               style={nopeOpacity}
             >
               <Image
-                source={require("../assets/images/nope.png")} // Replace with your nope image path
+                source={require("../assets/images/nope.png")}
                 style={{ width: 150, height: 100 }}
               />
             </Animated.View>
           </View>
         </Animated.View>
       </GestureDetector>
-      <MatchModal
-        visible={showModal}
-        setShowModal={setShowModal}
-        profileName={item.name}
-      />
     </>
   );
 };

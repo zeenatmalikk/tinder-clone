@@ -1,31 +1,13 @@
-import arrowUp from "@/assets/icons/arrow-up.png";
-import backArrow from "@/assets/icons/back-arrow.png";
 import chat from "@/assets/icons/chat.png";
 import close from "@/assets/icons/close.png";
-import dollar from "@/assets/icons/dollar.png";
 import email from "@/assets/icons/email.png";
-import eyecross from "@/assets/icons/eyecross.png";
-import google from "@/assets/icons/google.png";
 import home from "@/assets/icons/home.png";
 import list from "@/assets/icons/list.png";
 import lock from "@/assets/icons/lock.png";
-import map from "@/assets/icons/map.png";
-import marker from "@/assets/icons/marker.png";
-import out from "@/assets/icons/out.png";
 import person from "@/assets/icons/person.png";
-import pin from "@/assets/icons/pin.png";
-import point from "@/assets/icons/point.png";
 import profile from "@/assets/icons/profile.png";
-import search from "@/assets/icons/search.png";
 import icon from "@/assets/images/logo.png";
-import selectedMarker from "@/assets/icons/selected-marker.png";
-import star from "@/assets/icons/star.png";
-import target from "@/assets/icons/target.png";
 import to from "@/assets/icons/to.png";
-import check from "@/assets/images/check.png";
-import getStarted from "@/assets/images/get-started.png";
-import message from "@/assets/images/message.png";
-import noResult from "@/assets/images/no-result.png";
 import user1 from "@/assets/images/user1.jpg";
 import user2 from "@/assets/images/user2.jpg";
 import user3 from "@/assets/images/user3.jpg";
@@ -37,40 +19,23 @@ import user8 from "@/assets/images/user8.jpg";
 import user4 from "@/assets/images/user4.jpg";
 import myProfile from "@/assets/images/profile.jpg";
 import noMatches from "@/assets/images/no_matches.png";
-import { ImageSourcePropType } from "react-native";
+import check from "@/assets/images/check.png";
 
 export const images = {
-  getStarted,
-  check,
-  noResult,
-  message,
   noMatches,
   icon,
+  check,
 };
 
 export const icons = {
-  arrowUp,
-  backArrow,
   chat,
   close,
-  dollar,
   email,
-  eyecross,
-  google,
   home,
   list,
   lock,
-  map,
-  marker,
-  out,
   person,
-  pin,
-  point,
   profile,
-  search,
-  selectedMarker,
-  star,
-  target,
   to,
 };
 
@@ -324,7 +289,7 @@ export const chatData = [
   },
 ];
 
-export const matchesData = [
+export const profilesData = [
   {
     id: 1,
     imgUrl: user1,
@@ -424,41 +389,5 @@ export const profileData = [
     imgUrl: myProfile,
     hobbies: ["Mountain Biking", "Guitar Playing", "Photography"],
     bio: "A passionate adventurer with a love for mountain biking and nature photography. Enjoys playing guitar and creating music during downtime. Always looking for the next thrilling ride or perfect photo opportunity.",
-  },
-];
-
-export interface DataType {
-  cardId: number;
-  name?: string;
-
-  type: string;
-  image: ImageSourcePropType;
-  backgroundColor: string;
-}
-
-export const data: DataType[] = [
-  {
-    cardId: 1,
-    name: "Rakha Wibowo",
-
-    type: "mastercard",
-    image: user1,
-    backgroundColor: "#6d85a4",
-  },
-  {
-    cardId: 2,
-    name: "Rakha Wibowo",
-
-    type: "visa",
-    image: user2,
-    backgroundColor: "#86b4ee",
-  },
-  {
-    cardId: 3,
-    name: "Rakha Wibowo",
-
-    type: "visa",
-    image: user3,
-    backgroundColor: "#795de7",
   },
 ];

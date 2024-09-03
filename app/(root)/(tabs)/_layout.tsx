@@ -1,9 +1,8 @@
 import Navbar from "@/components/Navbar";
 import { icons } from "@/constants";
-import { Stack, Tabs } from "expo-router";
-import { Dimensions, Image, ImageSourcePropType, useWindowDimensions, View } from "react-native";
-import { heightPercentageToDP  as hp} from "react-native-responsive-screen";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Tabs } from "expo-router";
+import { Image, ImageSourcePropType, View } from "react-native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const TabIcon = ({
   source,
@@ -32,8 +31,6 @@ const TabIcon = ({
   </View>
 );
 export default function Layout() {
-const { width } = useWindowDimensions();
-
   return (
     <View className="flex-1">
       <Navbar />
@@ -80,9 +77,9 @@ const { width } = useWindowDimensions();
           }}
         />
         <Tabs.Screen
-          name="chat"
+          name="chatList"
           options={{
-            title: "Chat",
+            title: "ChatList",
             headerShown: false,
             tabBarIcon: ({ focused }) => (
               <TabIcon source={icons.chat} focused={focused} />

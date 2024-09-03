@@ -1,5 +1,10 @@
 import React from "react";
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+} from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -9,12 +14,11 @@ import { useUser } from "@clerk/clerk-expo";
 const Profile = () => {
   const data = profileData[0];
   const { user } = useUser();
-  console.log(user, "userDetsss");
   return (
     <ScrollView
       className="relative bg-white flex-1"
       contentContainerStyle={{
-        paddingBottom: hp(12),
+        paddingBottom: hp(15),
       }}
     >
       <View>
@@ -22,7 +26,7 @@ const Profile = () => {
           source={data.imgUrl}
           style={{
             width: wp(100),
-            height: hp(60),
+            height: hp(50),
             borderBottomLeftRadius: 30,
             borderBottomRightRadius: 30,
           }}
@@ -33,7 +37,7 @@ const Profile = () => {
         <View className="flex-row space-x-2 justify-between w-full items-center">
           <View className="flex-row ">
             <Text className="text-black text-center font-bold text-xl">
-              {user?.emailAddresses[0].emailAddress}
+              {user?.emailAddresses[0].emailAddress}, 
             </Text>
             <Text className="text-black text-center font-bold text-xl ">
               {data.age}

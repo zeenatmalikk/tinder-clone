@@ -8,13 +8,12 @@ import {
   FlatList,
   Platform,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { router } from "expo-router";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { ChatBubbleLeftEllipsisIcon } from "react-native-heroicons/outline";
 
-const Chat = () => {
+const ChatList = () => {
   const { swipedProfiles } = useSwipedProfiles();
 
   const filteredChatData = chatData.filter((profile) =>
@@ -40,7 +39,7 @@ const Chat = () => {
                   router.push({
                     pathname: "/(root)/chats",
                     params: {
-                      pageType: "chat",
+                      pageType: "chatList",
                       chat: JSON.stringify(item.chat),
                       imgUrl: item.imgUrl,
                       name: item.name,
@@ -49,7 +48,6 @@ const Chat = () => {
                   })
                 }
               >
-                {/* Avatar */}
                 <View
                   className="w-[17%] justify-center"
                   style={{
@@ -67,7 +65,6 @@ const Chat = () => {
                   />
                 </View>
 
-                {/* Information */}
                 <View
                   className="w-[82%]"
                   style={{
@@ -147,4 +144,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatList;

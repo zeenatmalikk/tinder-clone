@@ -3,8 +3,6 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { useRouter } from "expo-router";
 import { formatDate } from "@/lib/utils";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const MatchNotification: React.FC = () => {
   const { matchStatus } = useSwipedProfiles();
@@ -13,13 +11,11 @@ const MatchNotification: React.FC = () => {
   // Handle notification state
   const [notificationVisible, setNotificationVisible] = React.useState(false);
   const [notificationMessage, setNotificationMessage] = React.useState("");
-  const [isNewMatch, setIsNewMatch] = React.useState(false);
 
   useEffect(() => {
     if (matchStatus) {
       setNotificationMessage(matchStatus.message);
       setNotificationVisible(true);
-      setIsNewMatch(matchStatus.message.includes("Congratulations"));
     }
   }, [matchStatus]);
 
@@ -32,7 +28,7 @@ const MatchNotification: React.FC = () => {
         params: {
           pageType: "/home",
           name: profile.name,
-          imgUrl: profile.imgUrl, // Pass the profile image URL
+          imgUrl: profile.imgUrl,
           chat: JSON.stringify([]),
           date: formatDate(),
         },
@@ -50,19 +46,12 @@ const MatchNotification: React.FC = () => {
       className="absolute left-0 right-0 mx-4 bg-black bg-opacity-70 rounded-lg shadow-lg z-50 p-8"
       style={{ backgroundColor: "rgba(0, 0, 0, 0.8)" }}
     >
-      {/* <TouchableOpacity
-        className="absolute top-2 right-2 p-4"
-        onPress={handleClose}
-      >
-        <XCircleIcon color="#fff" size={24} />
-      </TouchableOpacity> */}
       <Text className="text-white text-lg font-bold mb-5">
         {notificationMessage}
       </Text>
 
       <View className="flex flex-row w-full gap-2">
         <TouchableOpacity
-       
           className="bg-red-500  rounded-lg mt-2 w-[50%] flex items-center justify-center"
           onPress={handleClose}
         >
@@ -77,7 +66,6 @@ const MatchNotification: React.FC = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      {/* )} */}
     </View>
   ) : null;
 };

@@ -82,7 +82,7 @@ const SignIn = () => {
       keyboardShouldPersistTaps="handled"
     >
       <View className="flex-1 bg-white">
-        <View className="relative w-full h-[150px]">
+        <View className="relative w-full h-[200px]">
           <Text className="text-2xl text-center text-black font-JakartaBold absolute bottom-8 w-full">
             Welcome 👋
           </Text>

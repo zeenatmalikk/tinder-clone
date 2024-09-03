@@ -5,12 +5,10 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
-  ImageSourcePropType,
   Platform,
 } from "react-native";
 import React from "react";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import { images, matchesData } from "@/constants";
 import { useRouter } from "expo-router";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 
