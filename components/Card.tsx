@@ -1,7 +1,7 @@
 // import { chatDataProps } from "@/constants";
 import { useSwipedProfiles } from "@/context/SwipedProfileContext";
 import { chatDataProps } from "@/types/type";
-import React from "react";
+import React, { useState } from "react";
 import { Image, Text, useWindowDimensions, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { MapPinIcon } from "react-native-heroicons/outline";
@@ -13,6 +13,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import MatchModal from "./CustomModal";
 type Props = {
   item: chatDataProps;
   index: number;
@@ -39,6 +40,7 @@ const Card = ({
 }: Props) => {
   const { width } = useWindowDimensions();
   const { addSwipedProfile } = useSwipedProfiles(); // Use the context
+  const [showModal, setShowModal] = useState(false); // State for modal visibility
 
   const translateX = useSharedValue(0);
   //to store the swipe direction where 1 is right and -1 is left
@@ -71,9 +73,10 @@ const Card = ({
             runOnJS(setNewData)([...newData, newData[currentIndex]]);
           });
           //if swiped right add it in context
-          if (direction.value === 1) {
+          if (direction.value == 1) {
             runOnJS(addSwipedProfile)(item);
           }
+
           animatedValue.value = withTiming(currentIndex + 1);
         } else {
           translateX.value = withTiming(0, { duration: 500 });
@@ -134,40 +137,41 @@ const Card = ({
     };
   });
   return (
-    <GestureDetector gesture={pan}>
-      <Animated.View
-        className="absolute w-[360px] h-[450px] rounded-md"
-        style={[{ zIndex: dataLength - index }, animatedStyle]}
-        key={item.id}
-      >
-        <View className="relative">
-          <Image
-            source={item.imgUrl}
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 15,
-            }}
-          />
+    <>
+      <GestureDetector gesture={pan}>
+        <Animated.View
+          className="absolute w-[360px] h-[450px] rounded-md"
+          style={[{ zIndex: dataLength - index }, animatedStyle]}
+          key={item.id}
+        >
+          <View className="relative">
+            <Image
+              source={item.imgUrl}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: 15,
+              }}
+            />
 
-          <View className="absolute bottom-5 left-1 w-full px-4 py-2 rounded-lg">
-            <Text className="text-white font-JakartaBold text-3xl flex items-center">
-              {item.name},{" "}
-              <Text className="text-2xl font-JakartaMedium">{item.age}</Text>
-            </Text>
-            <View className="flex w-full mt-2">
-              <Text className="text-white font-JakartaSemiBold text-lg flex items-center">
-                <MapPinIcon color="#fff" className="mr-1" />
-                <Text>{item.city}, </Text>
-                <Text className="text-gray-300">{item.country}</Text>
+            <View className="absolute bottom-5 left-1 w-full px-4 py-2 rounded-lg">
+              <Text className="text-white font-JakartaBold text-3xl flex items-center">
+                {item.name},{" "}
+                <Text className="text-2xl font-JakartaMedium">{item.age}</Text>
               </Text>
-              <Text className="text-white font-JakartaMedium text-base mt-2 w-7/10">
-                {item.bio}
-              </Text>
+              <View className="flex w-full mt-2">
+                <Text className="text-white font-JakartaSemiBold text-lg flex items-center">
+                  <MapPinIcon color="#fff" className="mr-1" />
+                  <Text>{item.city}, </Text>
+                  <Text className="text-gray-300">{item.country}</Text>
+                </Text>
+                <Text className="text-white font-JakartaMedium text-base mt-2 w-7/10">
+                  {item.bio}
+                </Text>
+              </View>
             </View>
-          </View>
 
-          {/* <Text
+            {/* <Text
             className="absolute bottom-5 left-3 text-white text-lg font-bold"
             style={{
               // textShadowColor: "rgba(0, 0, 0, 0.75)",
@@ -176,23 +180,35 @@ const Card = ({
           >
             {`${item.name}, ${item.age}\n${item.bio}`}
           </Text> */}
-          <Animated.View className="absolute top-2 left-2" style={likeOpacity}>
-            <Image
-              source={require("../assets/images/LIKE.png")} // Replace with your like image path
-              style={{ width: 150, height: 100 }}
-            />
-          </Animated.View>
+            <Animated.View
+              className="absolute top-2 left-2"
+              style={likeOpacity}
+            >
+              <Image
+                source={require("../assets/images/LIKE.png")} // Replace with your like image path
+                style={{ width: 150, height: 100 }}
+              />
+            </Animated.View>
 
-          {/* Nope Image */}
-          <Animated.View className="absolute top-2 right-2" style={nopeOpacity}>
-            <Image
-              source={require("../assets/images/nope.png")} // Replace with your nope image path
-              style={{ width: 150, height: 100 }}
-            />
-          </Animated.View>
-        </View>
-      </Animated.View>
-    </GestureDetector>
+            {/* Nope Image */}
+            <Animated.View
+              className="absolute top-2 right-2"
+              style={nopeOpacity}
+            >
+              <Image
+                source={require("../assets/images/nope.png")} // Replace with your nope image path
+                style={{ width: 150, height: 100 }}
+              />
+            </Animated.View>
+          </View>
+        </Animated.View>
+      </GestureDetector>
+      <MatchModal
+        visible={showModal}
+        setShowModal={setShowModal}
+        profileName={item.name}
+      />
+    </>
   );
 };
 

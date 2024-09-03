@@ -5,6 +5,7 @@ import Card from "./Card";
 import { View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
 import { chatDataProps } from "@/types/type";
+import MatchNotification from "./MatchNotification";
 
 const CardStack = () => {
   const [newData, setNewData] = useState<chatDataProps[]>(matchesData);
@@ -37,6 +38,7 @@ const CardStack = () => {
           );
         })}
       </View>
+      <MatchNotification/>
     </SafeAreaView>
   );
 };
