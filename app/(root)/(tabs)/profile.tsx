@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-} from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -13,7 +8,7 @@ import { profileData } from "@/constants";
 import { useUser } from "@clerk/clerk-expo";
 const Profile = () => {
   const data = profileData[0];
-  const { user } = useUser();
+  const { user } = useUser();  
   return (
     <ScrollView
       className="relative bg-white flex-1"
@@ -37,7 +32,7 @@ const Profile = () => {
         <View className="flex-row space-x-2 justify-between w-full items-center">
           <View className="flex-row ">
             <Text className="text-black text-center font-bold text-xl">
-              {user?.emailAddresses[0].emailAddress}, 
+              {user?.emailAddresses[0].emailAddress},
             </Text>
             <Text className="text-black text-center font-bold text-xl ">
               {data.age}
@@ -75,8 +70,6 @@ const Profile = () => {
             {data.bio}
           </Text>
         </View>
-
-        {/*  */}
       </View>
     </ScrollView>
   );
